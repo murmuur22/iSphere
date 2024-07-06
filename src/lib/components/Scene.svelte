@@ -1,60 +1,36 @@
 <script>
-  import { T, useFrame } from '@threlte/core'
+  import * as THREE from 'three';
+  import { OrbitControls } from '@threlte/extras';
+  import { T, useTask } from '@threlte/core';
 
-  let rotation = 0
-  useFrame(() => {
-    rotation += 0.001
-  })
+  export let video;
+  export let fov;
+
+  const texture = new THREE.VideoTexture(video);
+  texture.colorSpace = THREE.SRGBColorSpace;
+
 </script>
 
-<T.Group rotation.y={rotation}>
+<T.Group >
   <T.PerspectiveCamera
     makeDefault
-    position={[-10, 10, 10]}
-    fov={15}
-    on:create={({ ref }) => {
-      ref.lookAt(0, 1, 0)
-    }}
-  />
+    position={[0, 0, 1]}
+    {fov}
+  > 
+    <OrbitControls 
+      enableDamping
+      enableZoom={false}
+      enablePan={false}
+    />
+  </T.PerspectiveCamera>
 </T.Group>
 
-<!-- Floor -->
-<T.Mesh rotation.x={(90 * Math.PI) / 180}>
-  <T.CircleGeometry args={[3, 16]} />
-  <T.MeshBasicMaterial
-    color="#666666"
-    wireframe
-  />
-</T.Mesh>
-
-<T.DirectionalLight
-  intensity={0.8}
-  position.x={5}
-  position.y={10}
-/>
-<T.AmbientLight intensity={0.2} />
-
 <T.Mesh
-  position.y={1.2}
-  position.z={-0.75}
 >
-  <T.BoxGeometry />
-  <T.MeshStandardMaterial color="#0059BA" />
+  <T.SphereGeometry args={[100,100,100]}/>
+  {#if texture}
+    <T.MeshBasicMaterial map={texture} side={2} />
+  {/if}
 </T.Mesh>
 
-<T.Mesh
-  position={[1.2, 1.5, 0.75]}
-  rotation.x={5}
-  rotation.y={71}
->
-  <T.TorusKnotGeometry args={[0.5, 0.15, 100, 12, 2, 3]} />
-  <T.MeshStandardMaterial color="#F85122" />
-</T.Mesh>
 
-<T.Mesh
-  position={[-1.4, 1.5, 0.75]}
-  rotation={[-5, 128, 10]}
->
-  <T.IcosahedronGeometry />
-  <T.MeshStandardMaterial color="#F8EBCE" />
-</T.Mesh>

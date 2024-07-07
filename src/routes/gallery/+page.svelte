@@ -3,10 +3,10 @@
   import { gallery } from "$lib/stores.js"
 	import { fade } from "svelte/transition";
 
-  function saveImage(url){
+  function saveImage(image){
     const downloadLink = document.createElement("a");
-    downloadLink.href = url;
-    downloadLink.download = "somefile.png";
+    downloadLink.href = image.url;
+    downloadLink.download = image.title;
     downloadLink.click();
     downloadLink.remove();
   }
@@ -37,7 +37,7 @@
     {modalData.title}
   </h1>
   <div class="w-full flex flex-col-reverse items-center justify-center gap-2">
-    <button on:click={()=>{saveImage(modalData.url)}} class="peer hover:text-blue-500">
+    <button on:click={()=>{saveImage(modalData)}} class="peer hover:text-blue-500">
       <i class="fa-solid fa-download"></i>
       Save
     </button>

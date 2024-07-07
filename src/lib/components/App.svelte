@@ -43,7 +43,7 @@
     let imageUrl = canvas.toDataURL("image/jpeg", 1.0);
 
     gallery.set([...$gallery, {
-      title:`selfie_${$gallery.length+1}.png`,
+      title:`selfie_${$gallery.length+1}`,
       url: imageUrl,
       timestamp: Math.floor(Date.now() / 1000),
     }])

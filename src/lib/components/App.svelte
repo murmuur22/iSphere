@@ -88,6 +88,8 @@
     <Scene video={videoRef} fov={$fov} />
   </Canvas>
 
+  <div class="fixed top-0 w-full h-full thirds-grid z-100 pointer-events-none"/>
+
   <div class="fixed bottom-0 w-full text-white h-20 grid grid-flow-col grid-cols-3 items-center px-8 bg-gradient-to-t from-neutral-950 to-neutral-600">
 
     <div class="flex gap-2">
@@ -126,3 +128,13 @@
   </div>
 
 </div>
+
+<style>
+.thirds-grid {
+  background-image:
+    repeating-linear-gradient(#ccc 0 1px, transparent 1px 100%),
+    repeating-linear-gradient(90deg, #ccc 0 1px, transparent 1px 100%);
+  background-size: 33.33% 30.33%;
+}
+
+</style>

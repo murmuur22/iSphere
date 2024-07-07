@@ -36,7 +36,7 @@
 
 </script>
 
-<div class="flex flex-col absolute bottom-0 left-0 font-sans">
+<div class="flex flex-col absolute bottom-0 left-0 font-mono">
 {#each shown_log as item}
     <p class='text-white text-xs flex-none'>[{item.time}] {item.message}</p>
 {/each}

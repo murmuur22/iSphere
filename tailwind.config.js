@@ -4,8 +4,7 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				body: ["bahnschrift", "sans-serif"],
-				sans: ["sometype-mono", "sans-serif"],
+				mono: ["sometype-mono", "sans-serif"],
 			},
 		},
 	},

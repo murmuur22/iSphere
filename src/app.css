@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+	font-family: "bahnschrift";
+	src: url("/fonts/bahnschrift/BAHNSCHRIFT.TTF") format("truetype");
+}
+@font-face {
+	font-family: "sometype-mono";
+	src: url("/fonts/sometype-mono/SometypeMono-Medium.ttf") format("truetype");
+}

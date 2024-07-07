@@ -43,9 +43,9 @@
     let imageUrl = canvas.toDataURL("image/jpeg", 1.0);
 
     gallery.set([...$gallery, {
-      title: "",
+      title:`selfie_${$gallery.length+1}.png`,
       url: imageUrl,
-      timestamp: "",
+      timestamp: Math.floor(Date.now() / 1000),
     }])
 
   }
@@ -60,10 +60,8 @@
   if (isMobile()){
     fov = spring(120);
   }
-  console.log($fov)
-  function onWheel(e){
-    
 
+  function onWheel(e){
     let newFov = $fov + e.deltaY * 0.1
 
     if (newFov < 170 && newFov > 50) {

@@ -3,6 +3,7 @@
   import { onMount } from "svelte";
   import Startup from "$lib/components/Startup.svelte";
   import Welcome from "$lib/components/Welcome.svelte";
+  import Modal from "$lib/components/Modal.svelte";
 
   const do_startup = false; // Boolean
   let stage = "startup"; // Start Sequence
@@ -19,14 +20,14 @@
         else{
             stage = "main"
         }
-
-        /* on unmount */
-        return () => {
-            /* Clear date update interval */
-			clearInterval(interval);
-		};
 	});
 
+  /* Check if on mobile device by checking if userAgent contains android or iphone */
+  let isMobile = () => {
+      return /Android|iPhone/i.test(navigator.userAgent);
+  };
+
+  let showModal = true;;
 
 </script>
 
@@ -51,5 +52,21 @@
 
 <!-- MAIN SEQUENCE -->
 {:else if stage == 'main'}
+
+{#if isMobile()}
+
+  <Modal bind:showModal>
+    <h1 slot="header">
+      <b>Warning</b>
+    </h1>
+    <div class="w-full flex flex-col-reverse items-center justify-center gap-2">
+      <p>
+        Your device is not supported. Some features may not work as intended.
+        Please use a desktop browser for the best experience.
+      </p>
+    </div>
+  </Modal>
+{/if}
+
 <slot />
 {/if}
